@@ -16,14 +16,14 @@
 </div>
 
 
-##⚙️ Tech Stack</a>
+## ⚙️ Tech Stack</a>
 
 - Next.js
 - Three.js
 - Framer Motion
 - Tailwind CSS
 
-## <a name="features">🔋 Features</a>
+## 🔋 Features</a>
 
 👉 **Hero**: Captivating introduction featuring a spotlight effect and dynamic background.
 
