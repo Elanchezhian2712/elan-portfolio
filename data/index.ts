@@ -154,33 +154,33 @@ export const companies = [
 ];
 
 export const workExperience = [
-  {
+   {
     id: 1,
+    title: "Software Developer - Mahima Technology Pvt Ltd",
+    desc: "Spearheaded time-tracking system development with role-based authentication, boosting efficiency by 20%, optimizing UI/UX, integrating AI for data extraction, Google Drive API, and improving performance with asynchronous processing.",
+    className: "md:col-span-2",
+    thumbnail: "/exp4.svg",
+  },
+  {
+    id: 2,
     title: "Web Development Intern - Rakumura IT Solutions",
     desc: "Assisted in the development of a web-based platform using Next.js and Remix.js, enhancing interactivity.",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
   {
-    id: 2,
+    id: 3,
     title: "Python Programming Intern - CodSoft",
     desc: "As a Python Programming Intern at CodSoft, I engineered and implemented a comprehensive suite of applications, including a to-do list, an advanced calculator with scientific functions, a password generator, and an engaging quiz game.",
-    className: "md:col-span-2", // change to md:col-span-2
+    className: "md:col-span-2", 
     thumbnail: "/exp2.svg",
-  },
-  {
-    id: 3,
-    title: "Freelance Developer",
-    desc: "Spearheaded the development of ingenious web solutions for startups, resulting in a 20% increase in user engagement for clients.",
-    className: "md:col-span-2", // change to md:col-span-2
-    thumbnail: "/exp3.svg",
   },
   {
     id: 4,
     title: "Incubation Program Participant",
     desc: "As a participant in the Innovation Voucher Programme, I executed diverse projects and secured significant funding by increasing project success rates by 15% through market analysis, ideation, and investor pitches.",
     className: "md:col-span-2",
-    thumbnail: "/exp4.svg",
+    thumbnail: "/exp3.svg",
   },
 ];
 
