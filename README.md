@@ -16,7 +16,7 @@
 </div>
 
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+##⚙️ Tech Stack</a>
 
 - Next.js
 - Three.js
