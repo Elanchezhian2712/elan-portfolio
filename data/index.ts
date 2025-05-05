@@ -72,6 +72,14 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
+    title: "Virtual assistance for individuals with disabilities",
+    des: "Empowering disabled individuals with AI-driven accessible computing for inclusivity.",
+    img: "/p4.png",
+    iconLists: ["/py.svg", "/fl.svg", "/ht.svg", "/css.svg", "/js.svg"],
+    link: "https://github.com/Elanchezhian2712/VSIPC",
+  },
+  {
+    id: 2,
     title:
       "SaaS Website Builder, Project Management And Dashboard With Stripe using Nextjs14, Bun, Stripe Connect, Prisma, MySQL, Tailwind",
     des: "Our multivendor B2B2B SaaS platform offers website and funnel building, hosting, Stripe integration, role-based access, custom dashboards, project management, lead generation, performance metrics, agency management, custom checkouts, media storage, and a landing page, all with light and dark modes.",
@@ -80,7 +88,7 @@ export const projects = [
     link: "https://agencyfunnel.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "Build a Duolingo Clone With Nextjs, React, Drizzle, Stripe",
     des: "Our application features Next.js 14, AI voices, Shadcn UI, Clerk auth, sound effects, hearts and XP systems, leaderboards, quest milestones, a shop, pro tier with Stripe, admin dashboard, DrizzleORM with PostgresDB, Vercel deployment, mobile responsiveness, AI characters, exit confirmation, lesson practice to regain hearts, and a landing page.",
     img: "/p2.png",
@@ -95,14 +103,7 @@ export const projects = [
     iconLists: ["/mdb.svg", "/ex.svg", "/re.svg", "/nodejs-icon.svg"],
     link: "https://github.com/Elanchezhian2712/Emp-Frontend",
   },
-  {
-    id: 4,
-    title: "Virtual assistance for individuals with disabilities",
-    des: "Empowering disabled individuals with AI-driven accessible computing for inclusivity.",
-    img: "/p4.png",
-    iconLists: ["/py.svg", "/fl.svg", "/ht.svg", "/css.svg", "/js.svg"],
-    link: "https://github.com/Elanchezhian2712/VSIPC",
-  },
+
 ];
 
 export const educations = [
