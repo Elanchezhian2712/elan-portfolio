@@ -152,7 +152,7 @@ export const About = () => {
             </p>
             <div className="flex justify-center sm:justify-start">
               <a
-                href="/Elanchezhian_M_SoftwareDeveloper_Resume (2).pdf"
+                href="/Elanchezhian_M_SoftwareDeveloper_Resume.pdf"
                 download
                 className="inline-flex items-center bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
               >
