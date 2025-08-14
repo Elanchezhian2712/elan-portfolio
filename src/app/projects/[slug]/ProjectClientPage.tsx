@@ -9,8 +9,16 @@ import Image from "next/image";
 import { Github, ExternalLink, CheckCircle } from "lucide-react";
 import { SectionWrapper } from "@/app/components/SectionWrapper";
 import { Project } from "@/app/data/projects";
+import { ProjectCard } from "@/app/components/ProjectCard";
 
-const ProjectClientPage = ({ project }: { project: Project }) => {
+
+interface ProjectClientPageProps {
+  project: Project;
+  otherProjects: Project[]; // ✅ Add this
+}
+
+
+const ProjectClientPage = ({ project, otherProjects }: ProjectClientPageProps) => {
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -107,6 +115,30 @@ const ProjectClientPage = ({ project }: { project: Project }) => {
             </div>
           </motion.div>
         )}
+
+        <div className="mt-24 pt-16 border-t border-white/10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ staggerChildren: 0.1 }}
+            variants={fadeIn}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12 text-purple-300">
+              Explore More Projects
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {otherProjects.map((otherProject, index) => (
+                <ProjectCard
+                  key={otherProject.slug}
+                  project={otherProject}
+                  index={index}
+                />
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
       </SectionWrapper>
     </div>
   );

@@ -39,7 +39,7 @@ export default function Navbar() {
             behavior: 'smooth',
           });
         }
-      }, 300); 
+      }, 300);
     }
   };
 
@@ -47,7 +47,7 @@ export default function Navbar() {
   const getLinkClassName = (href: string) =>
     cn(
       linkBaseStyle,
-      pathname === href ? 'text-white font-semibold' : 'text-white/60 hover:text-purple-400'
+      pathname === href ? 'text-white font-semibold' : 'text-white hover:text-purple-400'
     );
 
   const menuVariants = {
@@ -71,7 +71,7 @@ export default function Navbar() {
   return (
     <>
       <div className="fixed top-4 sm:top-6 md:top-8 inset-x-0 z-50 px-4">
-   <div className="bg-black/10 backdrop-blur-md border border-white/20 text-white flex items-center w-full py-5 px-4 sm:px-6 rounded-full max-w-[90%] sm:max-w-2xl lg:max-w-4xl mx-auto relative overflow-hidden">
+        <div className="bg-black/10 backdrop-blur-md border border-white/20 text-white flex items-center w-full py-5 px-4 sm:px-6 rounded-full max-w-[90%] sm:max-w-2xl lg:max-w-4xl mx-auto relative overflow-hidden">
           <nav className="hidden md:flex flex-1 items-center justify-center gap-10">
             {allNavItems.map((item) => (
               <Link

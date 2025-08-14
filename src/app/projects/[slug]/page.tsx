@@ -1,6 +1,5 @@
 // app/projects/[slug]/page.tsx
 
-// This is the Server Component. It fetches data.
 import { notFound } from "next/navigation";
 import { projects } from "@/app/data/projects";
 import ProjectClientPage from "./ProjectClientPage";
@@ -11,19 +10,28 @@ interface ProjectPageProps {
 }
 
 const ProjectDetailPage = ({ params }: ProjectPageProps) => {
-  // Unwrap the 'params' promise using React.use()
   const { slug } = use(params);
 
-  // Find the project by slug
-  const project = projects.find((p) => p.slug === slug);
+  // Find the current project
+  const currentProject = projects.find((p) => p.slug === slug);
 
   // If no project matches, show 404
-  if (!project) {
+  if (!currentProject) {
     notFound();
   }
 
-  // Render the Client Component and pass the fetched project data as a prop.
-  return <ProjectClientPage project={project} />;
+  // Create a new list containing all projects EXCEPT the current one.
+  // The variable is correctly named 'otherProjects'.
+  const otherProjects = projects.filter((p) => p.slug !== slug);
+
+  // Pass BOTH the current project and the list of other projects to the client page
+  return (
+    <ProjectClientPage
+      project={currentProject}
+      // FIX: The variable passed here now correctly matches the one defined above.
+      otherProjects={otherProjects}
+    />
+  );
 };
 
 export default ProjectDetailPage;
