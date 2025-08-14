@@ -16,11 +16,53 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 export const metadata: Metadata = {
-  title: "Elanchezhian M | Software Developer Portfolio",
+  metadataBase: new URL("https://elan-dev.vercel.app"),
+  title:
+    "Elanchezhian M | Full Stack Developer, Software Engineer & Portfolio",
   description:
-    "Portfolio of Elanchezhian M – Full Stack Developer specializing in modern web applications, AI integrations, and scalable solutions. Showcasing projects, skills, and experience in JavaScript, Python, and cloud platforms.",
+    "Elanchezhian M – Full Stack Developer & Software Engineer specializing in modern web applications, AI integrations, and scalable solutions. View portfolio, skills, and projects in JavaScript, Python, and cloud platforms.",
+  keywords: [
+    "Elanchezhian M",
+    "Full Stack Developer",
+    "Software Developer",
+    "JavaScript Developer",
+    "Python Developer",
+    "Next.js Portfolio",
+    "React Developer",
+    "Web Developer Portfolio",
+    "Freelance Software Engineer",
+    "AI Integrations Developer",
+  ],
+  alternates: {
+    canonical: "https://elan-dev.vercel.app/",
+  },
+  openGraph: {
+    title:
+      "Elanchezhian M | Full Stack Developer, Software Engineer & Portfolio",
+    description:
+      "Full Stack Developer & Software Engineer specializing in modern web apps, AI integrations, and scalable solutions.",
+    url: "https://elan-dev.vercel.app/",
+    siteName: "Elanchezhian M Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg", 
+        width: 1200,
+        height: 630,
+        alt: "Elanchezhian M Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Elanchezhian M | Full Stack Developer, Software Engineer & Portfolio",
+    description:
+      "Full Stack Developer & Software Engineer specializing in modern web applications, AI integrations, and scalable solutions.",
+    images: ["/og-image.jpg"], 
+  },
 };
 
 export default function RootLayout({
@@ -31,15 +73,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white overflow-x-hidden`}
-        >
-        <SmoothScroll> 
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white overflow-x-hidden`}
+      >
+        <SmoothScroll>
           <StarsCanvas />
           <Navbar />
           <main>{children}</main>
           <Footer />
         </SmoothScroll>
-        <WhatsAppButton /> 
+        <WhatsAppButton />
       </body>
     </html>
   );

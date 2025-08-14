@@ -62,7 +62,7 @@ const Download = ({
         <motion.g
           variants={{
             normal: { y: 0 },
-            animate: { y: [0, 3, 0], transition: { repeat: Infinity } },
+            animate: { y: [0, 3, 0], transition: { ...defaultTransition, repeat: Infinity } },
           }}
           animate={controls}
           initial="normal"
