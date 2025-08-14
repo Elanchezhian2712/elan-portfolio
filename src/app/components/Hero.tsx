@@ -44,9 +44,24 @@ const FloatingShape = ({
 };
 
 export const Hero = () => {
+
+   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    const href = e.currentTarget.href;
+    const targetId = href.replace(/.*#/, "");
+    const elem = document.getElementById(targetId);
+    if (elem) {
+      elem.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  };
+
+
+  
   return (
-    <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden antialiased pt-24 pb-16">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-zinc-950 to-zinc-950 z-0" />
+   <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden antialiased pt-2 sm:pt-12 lg:pt-24 pb-16">
+     <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-zinc-950 to-zinc-950 z-0" />
       {SHAPE_POSITIONS.map((pos, index) => (
         <FloatingShape key={index} delay={index * 1.5} top={pos.top} left={pos.left} />
       ))}
@@ -55,9 +70,9 @@ export const Hero = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight leading-tight"
+          className="mt-10 text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-6xl tracking-tight leading-tight"
         >
-          Build <Cover>Intelligent Software</Cover> Faster with AI
+          From Concept to Code <Cover>Intelligent Software</Cover> with Elanchezhian M
         </motion.h1>
 
         <motion.p
@@ -66,8 +81,7 @@ export const Hero = () => {
           transition={{ duration: 1.1, delay: 0.2 }}
           className="mt-6 text-gray-300 text-lg sm:text-xl max-w-2xl mx-auto"
         >
-          We partner with visionary businesses to develop cutting-edge AI solutions that automate,
-          innovate, and drive unprecedented growth.
+          Full-stack developer specializing in high-performance, scalable applications — blending intelligence, speed, and precision.
         </motion.p>
 
         <motion.div
@@ -76,17 +90,13 @@ export const Hero = () => {
           transition={{ duration: 1.2, delay: 0.4 }}
           className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-          <Link
-            href="/contact"
-            className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-semibold px-8 py-3.5 rounded-lg shadow-md hover:scale-105 transition duration-300"
+         
+        <Link
+            href="/#contact"
+            onClick={handleScroll} 
+            className="border border-purple-500 text-purple-400 font-semibold px-8 py-3.5 rounded-lg hover:bg-gradient-to-r from-purple-500 to-indigo-600 hover:text-white transition duration-300"
           >
-            Request a Demo
-          </Link>
-          <Link
-            href="/solutions"
-            className="border border-purple-500 text-purple-400 font-semibold px-8 py-3.5 rounded-lg hover:bg-purple-500 hover:text-white transition duration-300"
-          >
-            Explore AI Solutions
+           Get in Touch
           </Link>
         </motion.div>
 
@@ -96,8 +106,8 @@ export const Hero = () => {
           transition={{ duration: 1.4, delay: 0.7 }}
           className="mt-12 flex justify-center items-center text-sm text-gray-400"
         >
-          <SparklesIcon className="w-5 h-5 text-purple-500 mr-2" />
-          Trusted by innovative startups and enterprises.
+          <SparklesIcon className="hidden sm:inline-flex w-5 h-5 text-purple-500 mr-2" />
+           From early-stage to enterprise — trusted to deliver intelligent solutions.
         </motion.div>
       </div>
     </div>

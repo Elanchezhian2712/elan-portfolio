@@ -62,3 +62,16 @@ html.lenis {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 8rem;
+}
+
+section[id],
+div[id] {
+  scroll-margin-top: 8rem;
+}

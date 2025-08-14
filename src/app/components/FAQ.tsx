@@ -1,95 +1,135 @@
+// src/app/components/FAQ.tsx
+
 "use client";
 
-import { ChevronDownIcon } from "lucide-react";
+import { Star, MapPin, Briefcase, Lightbulb } from "lucide-react";
 import { SectionWrapper } from "./SectionWrapper";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+// FIX #1: Import the 'Variants' type from framer-motion
+import { motion, Variants } from "framer-motion";
+import React from "react";
 
-const faqs = [
+const experiences = [
   {
-    q: "What kind of AI solutions do you specialize in?",
-    a: "We specialize in custom AI software, machine learning model development, LLM integration, natural language processing (NLP), computer vision, and AI-driven automation for various industries.",
+    role: "Software Developer",
+    company: "Mahima Technology Private Limited",
+    location: "Salem, Tamil Nadu, India",
+    period: "Jul '24 — Present",
+    icon: Briefcase,
+    details: [
+      "Built a comprehensive time-tracking system to monitor task states and improve productivity.",
+      "Engineered role-based dashboards, boosting task management efficiency by 20%.",
+      "Integrated Gemini AI API to extract structured invoice data, reducing manual entry by 30%.",
+      "Enhanced scalability with asynchronous processing, decreasing large file handling time by 40%.",
+    ],
   },
   {
-    q: "Which industries do you primarily serve?",
-    a: "We serve a diverse range of industries including tech startups, healthcare, finance, e-commerce, and manufacturing, tailoring AI solutions to specific domain needs.",
+    role: "Web Development Intern",
+    company: "Rakumura IT Solutions",
+    location: "Chennai, Tamil Nadu, India",
+    period: "Jan '24 — Apr '24",
+    icon: Briefcase,
+    details: [
+      "Executed end-to-end website projects, enhancing UX and responsive design to increase client engagement by 40%.",
+      "Collaborated with cross-functional teams on 10+ initiatives, boosting customer engagement and driving a 25% rise in quarterly sales.",
+    ],
   },
   {
-    q: "How long does a typical AI project take?",
-    a: "Project timelines vary. An AI MVP or prototype can take 4–8 weeks. Full-scale custom AI system development may range from 3–6+ months, depending on complexity and data requirements.",
-  },
-  {
-    q: "What is your process for developing an AI solution?",
-    a: "Our process includes discovery & strategy, data analysis & preparation, model development & training, integration, rigorous testing, deployment, and ongoing monitoring & optimization.",
-  },
-  {
-    q: "Do you offer ongoing support and maintenance?",
-    a: "Yes, we offer comprehensive support and maintenance plans to ensure your AI systems perform optimally, adapt to new data, and scale with your business needs.",
+    role: "Incubation Program Participant",
+    company: "BIC@PU (Periyar University)",
+    location: "Salem, Tamil Nadu, India",
+    period: "Sep '23 — Dec '23",
+    icon: Lightbulb,
+    details: [
+      "Built and validated a startup prototype through EDII-TN & DST-NIDHI-iTBI incubation.",
+      "Created a go-to-market strategy backed by customer research and competitive analysis.",
+    ],
   },
 ];
 
+// FIX #2: Explicitly type the variable with 'Variants' for better type safety.
+const fadeInAnimationVariants: Variants = {
+  initial: {
+    opacity: 0,
+    y: 100,
+  },
+  // The 'animate' function's return value is now correctly checked against the Variants type.
+  animate: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.05 * index,
+      duration: 0.8,
+      ease: "easeOut",
+    },
+    // FIX #3 (Alternative to #2): You could also add `as const` here, but explicit typing is often cleaner.
+    // } as const),
+  }),
+};
+
 export const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <SectionWrapper id="faq" className="py-16">
-      <div className="max-w-4xl mx-auto text-left mb-24">
-        {/* Header */}
-        <div className="text-center mb-12">
+    <SectionWrapper id="experience" className="py-24 sm:py-32">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="text-center mb-14">
           <span className="text-purple-400 font-semibold text-sm tracking-widest uppercase">
-            Got Questions?
+            My Journey
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white my-4 leading-tight">
-            Frequently Asked Questions
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mt-4 leading-tight">
+            Professional Experience
           </h2>
+          <p className="text-gray-400 text-base max-w-3xl mx-auto mb-12 leading-relaxed">
+            From internships and incubation programs to developing impactful AI-driven solutions, here is a timeline of my work.
+          </p>
         </div>
-
-        {/* FAQ List */}
-        <div className="space-y-5">
-          {faqs.map((item, idx) => {
-            const isOpen = openIndex === idx;
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {experiences.map((exp, index) => {
+            const isFeatured = index === 0;
+            const IconComponent = exp.icon;
 
             return (
-              <div
-                key={idx}
-                className="bg-zinc-800/70 border border-white/10 rounded-xl shadow-md backdrop-blur-sm px-6 py-5 transition-all duration-300 hover:bg-zinc-700/80"
+              <motion.div
+                key={index}
+                className={`
+                  ${isFeatured ? "lg:col-span-2" : ""}
+                  bg-zinc-800/80 border border-white/10 rounded-xl shadow-lg backdrop-blur-sm
+                  transition-all duration-300 hover:border-purple-400/50 hover:bg-zinc-800 group
+                `}
+                variants={fadeInAnimationVariants}
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                custom={index}
               >
-                {/* Summary */}
-                <button
-                  className="flex justify-between items-center w-full text-left cursor-pointer text-white font-medium text-lg group"
-                  onClick={() => toggle(idx)}
-                >
-                  <span className={`${isOpen ? "text-purple-400" : ""}`}>
-                    {item.q}
-                  </span>
-                  <ChevronDownIcon
-                    className={`w-5 h-5 text-purple-400 transform transition-transform duration-300 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-
-                {/* AnimatePresence for fade in/out */}
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      key="content"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                    >
-                      <p className="mt-4 text-gray-300 leading-relaxed text-base">
-                        {item.a}
-                      </p>
-                    </motion.div>
+                <div className="p-6 sm:p-8 h-full flex flex-col">
+                  {isFeatured && (
+                    <div className="flex items-center gap-2 mb-3">
+                      <Star className="w-5 h-5 text-yellow-400" />
+                      <span className="font-semibold text-yellow-400">
+                        Most Recent Work
+                      </span>
+                    </div>
                   )}
-                </AnimatePresence>
-              </div>
+                  <p className="text-gray-400 text-sm">{exp.period}</p>
+                  <div className="flex items-center gap-3 my-2">
+                    <IconComponent className="w-6 h-6 text-purple-400 shrink-0" />
+                    <h3 className="text-xl font-bold text-white">{exp.role}</h3>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-2 text-purple-400 font-medium mb-4">
+                    <p className="group-hover:text-purple-300 transition-colors">{exp.company}</p>
+                    <span className="text-white/30">|</span>
+                    <p className="flex items-center gap-1.5 text-sm">
+                      <MapPin className="w-3.5 h-3.5" />
+                      {exp.location}
+                    </p>
+                  </div>
+
+                  <ul className="space-y-3 list-disc list-inside text-gray-300 flex-grow text-base">
+                    {exp.details.map((detail, i) => (
+                      <li key={i}>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
             );
           })}
         </div>

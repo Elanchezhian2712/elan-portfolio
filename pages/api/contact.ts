@@ -7,9 +7,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 
-  const { name, email, company, subject, message, interest } = req.body;
+  const { name, email, company, subject, message } = req.body;
 
-  if (!name || !email || !subject || !message || !interest) {
+  if (!name || !email || !subject || !message ) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
@@ -26,23 +26,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const mailOptions = {
     from: process.env.SMTP_FROM_EMAIL, 
     to: process.env.EMAIL_RECIPIENT,   
-    subject: `From ElanTech Solutions: ${subject}`,
+    subject: `From Elanchezhian M Portfolio: ${subject}`,
     text: `
       Name: ${name}
       Email: ${email}
       Company: ${company || 'N/A'}
-      Interest: ${interest}
       Subject: ${subject}
 
       Message:
       ${message}
     `,
     html: `
-      <h1>New Enquiry From ElanTech Solutions</h1>
+      <h1>New Enquiry Elanchezhian M Portfolio</h1>
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Company:</strong> ${company || 'N/A'}</p>
-      <p><strong>Interest:</strong> ${interest}</p>
       <p><strong>Subject:</strong> ${subject}</p>
       <h2>Message:</h2>
       <p>${message.replace(/\n/g, '<br>')}</p> 

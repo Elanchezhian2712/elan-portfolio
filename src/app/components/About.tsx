@@ -8,10 +8,8 @@ import {
   useInView,
 } from "framer-motion";
 import React, { useRef, ReactNode } from "react";
-import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 
-// --- SectionWrapper (Reusable Layout Wrapper) ---
 interface SectionWrapperProps {
   children: ReactNode;
   id: string;
@@ -31,7 +29,6 @@ export const SectionWrapper = ({
   </section>
 );
 
-// --- RobotModel (Reusable 3D-style Component) ---
 const RobotModel = () => {
   const Nub = ({ className = "" }: { className?: string }) => (
     <div
@@ -81,8 +78,6 @@ const RobotModel = () => {
             />
           </div>
         </div>
-
-        {/* Decorative bolts and feet */}
         <Nub className="left-16 -top-2" />
         <Nub className="right-16 -top-2" />
         <Nub className="top-16 -left-2" />
@@ -98,7 +93,6 @@ const RobotModel = () => {
   );
 };
 
-// --- About Section with Scroll Fade-In and 3D Hover ---
 export const About = () => {
   const ref = useRef<HTMLDivElement>(null);
   const observerRef = useRef(null);
@@ -124,6 +118,7 @@ export const About = () => {
     mouseY.set(e.clientY - top - height / 2);
   };
 
+
   return (
     <SectionWrapper
       id="about"
@@ -136,38 +131,35 @@ export const About = () => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="flex flex-col md:flex-row gap-10 md:gap-16 items-center text-center md:text-left"
         >
-          <div className="w-full lg:w-1/2 order-last md:order-first">
+          <div className="w-full lg:w-1/2 order-last md:order-first text-justify">
             <span className="text-purple-400 font-semibold text-sm tracking-wider uppercase">
-              Our Mission
+              About Me
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold my-4 leading-tight">
-              Pioneering AI-Powered Digital Transformation
+              Building Smart Solutions with Lasting Impact
             </h2>
             <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-              At{" "}
-              <span className="font-semibold text-purple-400">
-                ElanTech Solutions
-              </span>
-              , we fuse deep AI expertise with strategic business insight. We
-              empower organizations to transcend traditional limitations,
-              automating complex processes and unlocking new levels of
-              efficiency and innovation.
+              I&apos;m <span className="font-semibold text-purple-400">Elanchezhian Muthukumar</span>,
+              a full-stack developer with a passion for building AI-driven, cloud-native applications
+              that solve real-world problems. I bridge the gap between modern web development and
+              advanced AI capabilities, delivering products that are as scalable as they are innovative.
             </p>
             <p className="text-gray-300 text-md mb-8 leading-relaxed">
-              From crafting intelligent automation for startups to deploying
-              sophisticated machine learning models for enterprises, we build
-              scalable AI systems that learn, adapt, and drive sustainable
-              growth.
+              From developing secure, serverless bookmarking systems with natural-language commands
+              to designing accessibility-focused virtual assistants, I specialize in creating solutions
+              that merge performance, usability, and intelligence. My goal is simple: turn complex
+              challenges into intuitive, high-impact experiences.
             </p>
-            <Link
-              href="/about"
-              className="inline-flex items-center bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
-            >
-              Learn More About Us <ArrowRightIcon className="w-5 h-5 ml-2" />
-            </Link>
+            <div className="flex justify-center sm:justify-start">
+              <a
+                href="/Elanchezhian_M_SoftwareDeveloper_Resume (2).pdf"
+                download
+                className="inline-flex items-center bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+              >
+                Download Resume <ArrowRightIcon className="w-5 h-5 ml-2" />
+              </a>
+            </div>
           </div>
-
-          {/* Right - Robot */}
           <div
             ref={ref}
             onMouseMove={handleMouseMove}

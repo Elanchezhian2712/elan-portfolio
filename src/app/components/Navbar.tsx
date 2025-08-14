@@ -1,112 +1,130 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import {  useEffect, useState } from 'react';
-import { cn } from "@/lib/utils";
-import { BorderBeam } from "./ui/border-beam";
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
+import { BorderBeam } from './ui/border-beam';
+import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const allNavItems = [
   { href: '/', label: 'HOME' },
-  { href: '/about', label: 'ABOUT US' },
-  { href: '/products', label: 'PRODUCTS' },
-  { href: '/services', label: 'SERVICES' },
-  { href: '/careers', label: 'CAREERS' },
-  { href: '/contact', label: 'CONTACT' },
+  { href: '/#about', label: 'ABOUT ME' },
+  { href: '/#skills', label: 'SKILLS' },
+  { href: '/#education', label: 'EDUCATION' },
+  { href: '/#experience', label: 'EXPERIENCE' },
+  { href: '/#projects', label: 'PROJECTS' },
+  { href: '/#contact', label: 'CONTACT' },
 ];
 
-const navItemsLeft = allNavItems.slice(0, 3);
-const navItemsRight = allNavItems.slice(3, 6);
-
-const Navbar = () => {
+export default function Navbar() {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const linkBaseStyle =
-    "uppercase font-medium transition-colors duration-200 ease-in-out whitespace-nowrap";
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    setIsMenuOpen(false);
+    if (href.startsWith('/#')) {
+      e.preventDefault();
+      const targetId = href.replace(/.*#/, "");
+      setTimeout(() => {
+        const elem = document.getElementById(targetId);
+        if (elem) {
+          elem.scrollIntoView({
+            behavior: 'smooth',
+          });
+        }
+      }, 300); 
+    }
+  };
 
-  const getLinkClassName = (href: string) => cn(
-    linkBaseStyle,
-    pathname === href
-      ? 'text-white font-semibold'
-      : 'text-white/60 hover:text-purple-500/90'
-  );
+  const linkBaseStyle = 'uppercase font-medium transition-colors duration-200 ease-in-out';
+  const getLinkClassName = (href: string) =>
+    cn(
+      linkBaseStyle,
+      pathname === href ? 'text-white font-semibold' : 'text-white/60 hover:text-purple-400'
+    );
+
+  const menuVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { when: "beforeChildren", staggerChildren: 0.1 }
+    },
+    exit: {
+      opacity: 0,
+      transition: { when: "afterChildren", staggerChildren: 0.05, staggerDirection: -1, duration: 0.25 }
+    },
+  };
+
+  const linkVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 20 },
+  };
 
   return (
-    <div className="fixed top-4 sm:top-6 md:top-8 inset-x-0 z-50 px-4">
-      <div className="bg-black/10 backdrop-blur-md border border-white/20 text-white flex items-center w-full py-4 px-4 sm:px-6 rounded-full max-w-[95%] sm:max-w-4xl lg:max-w-6xl mx-auto relative overflow-hidden">
-        <nav className="flex md:hidden items-center justify-around w-full">
-          {allNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                getLinkClassName(item.href),
-                'text-[10px] sm:text-xs text-center px-0.5' 
-              )}
-            >
-              {item.label}
+    <>
+      <div className="fixed top-4 sm:top-6 md:top-8 inset-x-0 z-50 px-4">
+   <div className="bg-black/10 backdrop-blur-md border border-white/20 text-white flex items-center w-full py-5 px-4 sm:px-6 rounded-full max-w-[90%] sm:max-w-2xl lg:max-w-4xl mx-auto relative overflow-hidden">
+          <nav className="hidden md:flex flex-1 items-center justify-center gap-10">
+            {allNavItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleLinkClick(e, item.href)}
+                className={cn(getLinkClassName(item.href), 'md:text-sm tracking-wide')}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="md:hidden flex items-center justify-between w-full">
+            <Link href="/" className="text-white font-bold uppercase" onClick={() => setIsMenuOpen(false)}>
+              Home
             </Link>
-          ))}
-        </nav>
-
-        <nav className="hidden md:flex flex-1 items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-            {navItemsLeft.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  getLinkClassName(item.href),
-                  'md:text-sm tracking-wide px-1'
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
+            <button onClick={() => setIsMenuOpen(true)} aria-label="Open menu">
+              <Menu size={24} />
+            </button>
           </div>
 
-          <Link href="/" className="flex items-center justify-center shrink-0 mx-2 sm:mx-3">
-            <Image
-              src="/Images/logo.png"
-              alt="ElanTech Icon"
-              width={32}
-              height={32}
-              className="w-8 h-8"
-            />
-           <Image
-              src="/Images/logo-elantech.png"
-              alt="ElanTech Solutions"
-              width={150}
-              height={40}
-              className="hidden lg:block ml-2 h-6 w-auto"
-            />
-          </Link>
-
-          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-            {navItemsRight.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  getLinkClassName(item.href),
-                  'md:text-sm tracking-wide px-1'
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
-        {mounted && <BorderBeam duration={8} size={100} />}
+          {mounted && <BorderBeam duration={8} size={100} />}
+        </div>
       </div>
-    </div>
-  );
-};
 
-export default Navbar;
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            variants={menuVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-lg flex flex-col items-center justify-center md:hidden"
+          >
+            <button onClick={() => setIsMenuOpen(false)} aria-label="Close menu" className="absolute top-7 right-6 text-white/80 hover:text-white">
+              <X size={30} />
+            </button>
+            <nav className="flex flex-col items-center gap-8">
+              {allNavItems.map((item) => (
+                <motion.div key={item.href} variants={linkVariants}>
+                  <Link
+                    href={item.href}
+                    onClick={(e) => handleLinkClick(e, item.href)}
+                    className={cn(getLinkClassName(item.href), 'text-2xl')}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}

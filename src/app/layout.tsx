@@ -18,8 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elan Tech Solutions",
-  description: "Elan Tech Solutions specializes in custom software, AI integrations, and scalable web platforms, tailored to drive business success."
+  title: "Elanchezhian M | Software Developer Portfolio",
+  description:
+    "Portfolio of Elanchezhian M – Full Stack Developer specializing in modern web applications, AI integrations, and scalable solutions. Showcasing projects, skills, and experience in JavaScript, Python, and cloud platforms.",
 };
 
 export default function RootLayout({
