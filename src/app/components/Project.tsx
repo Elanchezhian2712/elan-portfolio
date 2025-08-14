@@ -50,15 +50,15 @@ export const Project = () => {
               className="bg-zinc-800/60 backdrop-blur-lg rounded-xl overflow-hidden border border-zinc-700 hover:border-purple-400 transition-all duration-300"
             >
               <div className="relative h-56 overflow-hidden">
-  <Image
-    src={project.image}
-    alt={project.title}
-    fill 
-    style={{ objectFit: "cover" }} 
-    className="hover:scale-105 transition-transform duration-500"
-    priority={idx < 2} 
-  />
-</div>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="hover:scale-105 transition-transform duration-500"
+                  priority={idx < 2}
+                />
+              </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-white mb-2">
                   {project.title}
