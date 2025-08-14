@@ -8,7 +8,7 @@ import {
   useInView,
 } from "framer-motion";
 import React, { useRef, ReactNode } from "react";
-import { ArrowRightIcon } from "lucide-react";
+import { Download } from "../components/Download";
 
 interface SectionWrapperProps {
   children: ReactNode;
@@ -156,7 +156,7 @@ export const About = () => {
                 download
                 className="inline-flex items-center bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
               >
-                Download Resume <ArrowRightIcon className="w-5 h-5 ml-2" />
+                Download Resume <Download width={15} height={15} stroke="#ffffffff" />
               </a>
             </div>
           </div>

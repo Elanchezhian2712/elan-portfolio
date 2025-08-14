@@ -49,7 +49,7 @@ const LinkedInIcon = () => (
 
 const Footer = () => {
   const borderStyle = "border-neutral-700";
-  const horizontalPadding = "px-4 sm:px-6 lg:px-8";
+  const horizontalPadding = "px-0 sm:px-6 lg:px-8";
 
   return (
     <footer className="relative mt-32">
@@ -93,9 +93,9 @@ const Footer = () => {
           </div>
         </motion.div>
       </div>
-      <div className="text-white bg-gradient-to-br from-purple-900/30 via-zinc-950 to-zinc-950 pt-8 sm:pt-20 lg:pt-38">
+      <div className="text-white bg-gradient-to-br from-purple-900/30 via-zinc-950 to-zinc-950 pt-0 sm:pt-20 lg:pt-38">
         <div
-          className={`${borderStyle} grid grid-cols-1 md:grid-cols-12 gap-0 py-10 sm:py-12 ${horizontalPadding}`}
+          className={`${borderStyle} grid grid-cols-1 md:grid-cols-12 gap-0 py-8 sm:py-10 ${horizontalPadding}`}
         >
         </div>
         <div

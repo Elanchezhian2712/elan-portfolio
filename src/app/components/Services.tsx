@@ -7,9 +7,10 @@ export const Services = () => {
   const education = [
     {
       icon: <GraduationCap className="w-7 h-7" />,
-      title: "Master of Computer Applications (MCA)",
-      desc: "Periyar University | Aug 2022 – Jun 2024 | CGPA: 8.5. Specialized in AI-driven applications, scalable full-stack systems, and enterprise-grade database design.",
-    },
+      title: "Master of Computer Applications (MCA) — University Rank Holder",
+      desc: "Periyar University | Aug 2022 – Jun 2024 | CGPA: 8.5. Awarded University Rank for outstanding academic excellence. Specialized in AI-driven solutions, scalable full-stack architectures, and enterprise-grade database systems.",
+    }
+    ,
     {
       icon: <BookOpen className="w-7 h-7" />,
       title: "Bachelor of Science in Computer Science (B.Sc. CS)",

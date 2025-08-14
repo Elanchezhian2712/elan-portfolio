@@ -75,3 +75,17 @@ section[id],
 div[id] {
   scroll-margin-top: 8rem;
 }
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff; 
+  border-radius: 9999px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff transparent;
+}
