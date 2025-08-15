@@ -11,7 +11,6 @@ export type Project = {
   overview: string;
   features: string[];
   gallery: string[];
-  // --- NEW: Data fields to make a stronger case for hiring ---
   purpose: string;
   challenges: { challenge: string; solution: string }[];
   architecture: string;
@@ -19,7 +18,6 @@ export type Project = {
 };
 
 export const projects: Project[] = [
-  // --- PROJECT 1: BOOKMARK MANAGER ---
   {
     title: "Secure AI-Powered Bookmark Manager",
     slug: "bookmark-manager",
