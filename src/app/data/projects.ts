@@ -28,11 +28,11 @@ export const projects: Project[] = [
     github: "https://github.com/Elanchezhian2712/Drive_Genie",
     overview: "Developed a secure, serverless bookmarking application that leverages Google Drive for encrypted storage and Gemini AI for natural language processing, enabling users to manage bookmarks and folders using voice commands or text prompts.",
     features: [
-      "Encrypted serverless storage using Google Drive and client-side AES (Zero-Knowledge model).",
-      "Voice and NLP-based bookmark/folder management with Gemini 2.5 Pro.",
-      "Achieved a 95+ Lighthouse score through optimized image loading and efficient component rendering.",
-      "OAuth 2.0 login with Google Identity for scoped, permission-based access.",
-      "Designed for enhanced security and seamless user experience."
+      "Zero-Knowledge Encryption with client-side AES on Google Drive.",
+      "AI-Powered Management via Gemini 1.5 (voice & text commands).",
+      "Optimized Frontend Performance using React memoization and Next.js image optimization.",
+      "Secure Google OAuth 2.0 Login with privacy-focused scoped permissions.",
+      "Automatic Vault Locking for enhanced session security."
     ],
     gallery: ["/Images/bookmark-gallery-1.png", "/Images/bookmark-gallery-2.png"],
     purpose: "I wanted to solve the problem of securely managing bookmarks across devices without trusting a third-party service with my data. This project was born out of a need for a zero-knowledge bookmarking tool that was both powerful and intuitive, using AI to make organization effortless.",

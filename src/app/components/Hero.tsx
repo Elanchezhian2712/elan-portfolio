@@ -88,13 +88,13 @@ export const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.4 }}
-          className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="mt-5 flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
          
         <Link
             href="/#contact"
             onClick={handleScroll} 
-            className="border border-purple-500 text-purple-400 font-semibold px-8 py-3.5 rounded-lg hover:bg-gradient-to-r from-purple-500 to-indigo-600 hover:text-white transition duration-300"
+            className="border border-white-500 font-semibold px-8 py-3.5 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 text-white transition duration-300"
           >
            Get in Touch
           </Link>

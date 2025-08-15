@@ -89,12 +89,11 @@ const Contactme = ({
   };
 
   return (
-   <section
-  id="contact"
-  className="text-neutral-300 antialiased selection:bg-purple-500 selection:text-white min-h-screen mt-24"
->
-  <div className="text-center max-w-3xl mx-auto">
-
+    <section
+      id="contact"
+      className="text-neutral-300 antialiased selection:bg-purple-500 selection:text-white min-h-screen mt-24"
+    >
+      <div className="text-center max-w-3xl mx-auto">
         <span className="text-purple-400 font-semibold text-sm tracking-widest uppercase">
           Get in Touch
         </span>
@@ -102,9 +101,12 @@ const Contactme = ({
           Let&apos;s Build Something Intelligent Together.
         </h2>
       </div>
-     
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <section id="contact-form-section" className={`w-full pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-16 sm:pb-20 md:pb-24 lg:pb-28 mb-20`}>
+        <section
+          id="contact-form-section"
+          className="w-full pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-16 sm:pb-20 md:pb-24 lg:pb-28 mb-8"
+        >
           <div className="container mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 xl:gap-20 items-start">
               <div className="lg:col-span-2">
@@ -143,9 +145,8 @@ const Contactme = ({
                     {officeAddress && (
                       <div>
                         <h3 className="text-2xl font-semibold text-neutral-100 mb-6 text-center sm:text-left">
-                         Address
+                          Address
                         </h3>
-
                         <div className="flex flex-col sm:flex-row items-center sm:items-start group max-w-sm mx-auto sm:max-w-none sm:mx-0">
                           <div className="flex-shrink-0 w-10 h-10 bg-neutral-800/70 border border-neutral-700/80 rounded-lg flex items-center justify-center mb-4 sm:mb-0 sm:mr-4 group-hover:bg-purple-500/10 group-hover:border-purple-500/30 transition-all duration-300">
                             <svg
