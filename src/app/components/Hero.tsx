@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Cover } from "./ui/cover";
 import { SparklesIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { Mail, Linkedin } from "lucide-react";
 
 const SHAPE_POSITIONS = [
   { top: "20%", left: "30%" },
@@ -36,6 +37,7 @@ const FloatingShape = ({
         delay,
         repeat: Infinity,
         ease: "easeInOut",
+        type: "tween",
       }}
       style={{ position: "absolute", top, left }}
       className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl shadow-lg shadow-purple-800/30 blur-[1px] z-10"
@@ -45,7 +47,7 @@ const FloatingShape = ({
 
 export const Hero = () => {
 
-   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     const href = e.currentTarget.href;
     const targetId = href.replace(/.*#/, "");
@@ -58,10 +60,10 @@ export const Hero = () => {
   };
 
 
-  
+
   return (
-   <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden antialiased pt-2 sm:pt-12 lg:pt-24 pb-16">
-     <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-zinc-950 to-zinc-950 z-0" />
+    <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden antialiased pt-2 sm:pt-12 lg:pt-24 pb-16">
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-zinc-950 to-zinc-950 z-0" />
       {SHAPE_POSITIONS.map((pos, index) => (
         <FloatingShape key={index} delay={index * 1.5} top={pos.top} left={pos.left} />
       ))}
@@ -90,14 +92,25 @@ export const Hero = () => {
           transition={{ duration: 1.2, delay: 0.4 }}
           className="mt-5 flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
-         
-        <Link
+
+          <Link
             href="/#contact"
-            onClick={handleScroll} 
-            className="border border-white-500 font-semibold px-8 py-3.5 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 text-white transition duration-300"
+            onClick={handleScroll}
+            className="flex items-center gap-2 border border-purple-500 font-semibold px-6 py-3 rounded-xl text-white-500 hover:text-white transition duration-300 hover:bg-gradient-to-r hover:from-purple-500 hover:to-indigo-600"
           >
-           Get in Touch
+            <Mail className="w-5 h-5" />
+            Get in Touch
           </Link>
+
+          <Link
+            href="https://www.linkedin.com/in/elanchezhian-dev"
+            target="_blank"
+            className="flex items-center gap-2 border border-blue-500 font-semibold px-6 py-3 rounded-xl text-white-500 hover:text-white transition duration-300 hover:bg-gradient-to-r hover:from-blue-600 hover:to-indigo-700"
+          >
+            <Linkedin className="w-5 h-5" />
+            LinkedIn
+          </Link>
+
         </motion.div>
 
         <motion.div
@@ -107,7 +120,7 @@ export const Hero = () => {
           className="mt-12 flex justify-center items-center text-sm text-gray-400"
         >
           <SparklesIcon className="hidden sm:inline-flex w-5 h-5 text-purple-500 mr-2" />
-           From early-stage to enterprise — trusted to deliver intelligent solutions.
+          From early-stage to enterprise — trusted to deliver intelligent solutions.
         </motion.div>
       </div>
     </div>
