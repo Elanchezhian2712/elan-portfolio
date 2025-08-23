@@ -19,35 +19,40 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Secure AI-Powered Bookmark Manager",
-    slug: "bookmark-manager",
-    desc: "A secure, serverless bookmark manager with voice & NLP commands, Google Drive integration, and multi-file support.",
-    tech: ["Next.js", "Gemini AI", "CryptoJS",  "Google Drive API", "Framer Motion", "Google Cloud Console"],
-    image: "/Images/Secure AI-Powered Bookmark Manager.png",
-    link: "https://drivegenie.vercel.app/",
-    github: "https://github.com/Elanchezhian2712/Drive_Genie",
-    overview: "Developed a secure, serverless bookmarking application that leverages Google Drive for encrypted storage and Gemini AI for natural language processing, enabling users to manage bookmarks and folders using voice commands or text prompts.",
-    features: [
-      "Zero-Knowledge Encryption with client-side AES on Google Drive.",
-      "AI-Powered Management via Gemini 1.5 (voice & text commands).",
-      "Optimized Frontend Performance using React memoization and Next.js image optimization.",
-      "Secure Google OAuth 2.0 Login with privacy-focused scoped permissions.",
-      "Automatic Vault Locking for enhanced session security."
+    "title": "Secure, AI-Powered Document & Bookmark Vault",
+    "slug": "secure-ai-vault",
+    "desc": "A zero-knowledge, AI-powered vault using Google Drive for encrypted storage, featuring OCR for documents and natural language commands.",
+    "tech": ["Next.js", "Gemini AI", "Tesseract.js", "CryptoJS", "Google Drive API", "Framer Motion", "OTPAuth","Google Cloud Console"],
+    "image": "/Images/Secure AI-Powered Bookmark Manager.png",
+    "link": "https://drivegenie.vercel.app/",
+    "github": "https://github.com/Elanchezhian2712/Drive_Genie",
+    "overview": "Developed a secure, serverless application that transforms a user's Google Drive into an end-to-end encrypted vault. It leverages Gemini AI for natural language management and client-side OCR to automatically extract data from uploaded documents, such as IDs, receipts, and certificates.",
+    "features": [
+      "Zero-Knowledge Architecture with client-side AES encryption on Google Drive.",
+      "AI-Powered OCR to automatically parse and structure data from uploaded images.",
+      "Natural Language Management using voice or text commands via Gemini 2.5 Pro.",
+      "Advanced Security including 2-Factor Authentication (2FA) and configurable inactivity timeouts.",
+      "Optimized and Responsive UI built with Next.js and Framer Motion.",
+      "Secure Authentication using Google OAuth 2.0 with minimal, privacy-focused permissions."
     ],
-    gallery: ["/Images/bookmark-gallery-1.png", "/Images/bookmark-gallery-2.png"],
-    purpose: "I wanted to solve the problem of securely managing bookmarks across devices without trusting a third-party service with my data. This project was born out of a need for a zero-knowledge bookmarking tool that was both powerful and intuitive, using AI to make organization effortless.",
-    challenges: [
+    "gallery": ["/Images/bookmark-gallery-1.png", "/Images/bookmark-gallery-2.png"],
+    "purpose": "I built this project to solve the problem of securely managing sensitive information—from bookmarks to personal documents—without trusting a third-party service. My goal was to create a zero-knowledge tool that uses AI to eliminate tedious data entry and make organization effortless, giving users full control over their data.",
+    "challenges": [
       {
-        challenge: "Implementing a 'zero-knowledge' security model where even I, the developer, couldn't access user data.",
-        solution: "I implemented client-side AES encryption using CryptoJS before any data was sent to the Google Drive API. This ensured that all stored files are unreadable without the user's client-side key, achieving true data privacy."
+        "challenge": "Implementing a 'zero-knowledge' security model to ensure absolute user privacy.",
+        "solution": "I architected a client-side encryption flow using CryptoJS. All data is encrypted with a user's Master Password *before* being transmitted to the Google Drive API. This means the stored files are unreadable ciphertext to anyone but the user, achieving true data sovereignty."
       },
       {
-        challenge: "Making the AI interaction feel natural and responsive for managing bookmarks via voice commands.",
-        solution: "I engineered specific prompts for the Gemini AI API and created a parsing layer to convert its JSON output into executable application commands. This decoupled the AI logic from the application's core functions, making it more reliable and scalable."
+        "challenge": "Automating data entry from various uploaded documents like IDs and receipts.",
+        "solution": "I created a client-side OCR pipeline using Tesseract.js that pre-processes images in-browser (enhancing contrast and converting to grayscale) for accuracy. The extracted text is then passed to a Gemini AI model with an expert-tuned prompt, which intelligently parses and structures the data into key-value pairs."
+      },
+      {
+        "challenge": "Ensuring the AI interaction for managing the vault was both powerful and reliable.",
+        "solution": "I engineered a sophisticated prompting system for the Gemini API that combines a 'knowledge base' of common document fields with a 'few-shot' example. This guides the AI to produce consistent JSON output, which is then handled by a robust parsing layer that translates the AI's response into executable application commands."
       }
     ],
-    architecture: "I chose Next.js for its powerful hybrid of Server and Client components, allowing for fast initial loads and rich interactivity. To create a cost-effective and truly serverless backend, I leveraged the Google Drive API as an encrypted file store, which offloaded the complexity of managing a dedicated database.",
-    // videoUrl: "https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE"
+    "architecture": "I chose Next.js for its performant hybrid of Server and Client components, enabling a fast initial load and a highly interactive UI. To maintain a truly serverless and cost-effective backend, the Google Drive API serves as a personal, encrypted database for each user. This innovative approach offloads the cost and complexity of database management while placing the user in full control of their own data.",
+    // "videoUrl": "https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE"
   },
 
   // --- PROJECT 2: VIRTUAL ASSISTANT ---
