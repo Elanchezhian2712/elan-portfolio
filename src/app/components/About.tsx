@@ -6,9 +6,12 @@ import {
   useSpring,
   useTransform,
   useInView,
+  Variants,
 } from "framer-motion";
-import React, { useRef, ReactNode } from "react";
+
+import React, { useRef, ReactNode, useState } from "react";
 import { Download } from "../components/Download";
+import { Check } from "lucide-react";
 
 interface SectionWrapperProps {
   children: ReactNode;
@@ -28,6 +31,51 @@ export const SectionWrapper = ({
     <div className="max-w-7xl mx-auto">{children}</div>
   </section>
 );
+
+export const ResumeDownload = () => {
+  const [downloaded, setDownloaded] = useState(false);
+
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(
+        "/Elanchezhian_M_SoftwareDeveloper_Resume.pdf"
+      );
+      const blob = await response.blob();
+
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Elanchezhian_M_SoftwareDeveloper_Resume.pdf";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+
+      setDownloaded(true);
+      setTimeout(() => setDownloaded(false), 2000);
+    } catch (error) {
+      console.error("Download failed:", error);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleDownload}
+      className="inline-flex items-center bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+    >
+      {downloaded ? (
+        <>
+          Downloaded Resume <Check width={16} height={16} stroke="#fff" className="ml-2" />
+        </>
+      ) : (
+        <>
+          Download Resume <Download width={15} height={15} stroke="#fff" className="ml-2" />
+        </>
+      )}
+    </button>
+  );
+};
+
 
 const RobotModel = () => {
   const Nub = ({ className = "" }: { className?: string }) => (
@@ -117,7 +165,18 @@ export const About = () => {
     mouseX.set(e.clientX - left - width / 2);
     mouseY.set(e.clientY - top - height / 2);
   };
-
+  
+  const containerVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: [0.43, 0.13, 0.23, 0.96] as const,
+      },
+    },
+  };
 
   return (
     <SectionWrapper
@@ -126,9 +185,9 @@ export const About = () => {
     >
       <div ref={observerRef}>
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: "easeOut" }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="flex flex-col md:flex-row gap-10 md:gap-16 items-center text-center md:text-left"
         >
           <div className="w-full lg:w-1/2 order-last md:order-first text-justify">
@@ -151,13 +210,7 @@ export const About = () => {
               challenges into intuitive, high-impact experiences.
             </p>
             <div className="flex justify-center sm:justify-start">
-              <a
-                href="/Elanchezhian_M_SoftwareDeveloper_Resume.pdf"
-                download
-                className="inline-flex items-center bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
-              >
-                Download Resume <Download width={15} height={15} stroke="#ffffffff" />
-              </a>
+              <ResumeDownload />
             </div>
           </div>
           <div

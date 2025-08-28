@@ -2,7 +2,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
 import { SectionWrapper } from "./SectionWrapper";
@@ -11,43 +11,67 @@ import Image from "next/image";
 
 export const Project = () => {
   const observerRef = useRef(null);
+  // once: true is important here. It means isInView will become true and stay true.
   const isInView = useInView(observerRef, { once: true, margin: "-100px" });
+
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <SectionWrapper
       id="projects"
-      className="bg-[linear-gradient(to_bottom,rgba(147,51,234,0.15),#18181b,rgba(147,51,234,0.15))]"
+      className="bg-[linear-gradient(to_bottom,rgba(147,51,247,0.15),#18181b,rgba(147,51,247,0.15))]"
     >
       <div ref={observerRef}>
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="text-center mb-12"
-        >
-          <span className="text-purple-400 font-semibold text-sm tracking-wider uppercase">
-            My Work
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold my-4 leading-tight">
-            Projects
-          </h2>
-          <p className="text-gray-400 text-base max-w-3xl mx-auto mb-12 leading-relaxed">
-            A selection of my most impactful projects that combine AI, full-stack
-            development, and cloud integration.
-          </p>
+            initial={{ opacity: 0, y: 50 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-center mb-12"
+          >
+            <span className="text-purple-400 font-semibold text-sm tracking-wider uppercase">
+              My Work
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold my-4 leading-tight">
+              Projects
+            </h2>
+            <p className="text-gray-400 text-base max-w-3xl mx-auto mb-12 leading-relaxed">
+              A selection of my most impactful projects that combine AI, full-stack
+              development, and cloud integration.
+            </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: idx * 0.2 }}
-              whileHover={{
-                scale: 1.03,
-                boxShadow: "0 0 20px rgba(168, 85, 247, 0.4)",
+              onHoverStart={() => setHoveredIndex(idx)}
+              onHoverEnd={() => setHoveredIndex(null)}
+              // The animate prop now controls everything based on state
+              animate={{
+                opacity: isInView
+                  ? hoveredIndex === idx
+                    ? 1
+                    : hoveredIndex !== null
+                    ? 0.5 // Made non-hovered cards more transparent for better focus
+                    : 1
+                  : 0,
+                y: isInView ? 0 : 40,
+                // --- NEW: Inverted scale logic ---
+                scale: isInView
+                  ? hoveredIndex === idx
+                    ? 0.97 // Reduce size on hover
+                    : hoveredIndex !== null
+                    ? 0.90 // Reduce other cards even more
+                    : 1 // Default size
+                  : 1,
               }}
-              className="bg-zinc-800/60 backdrop-blur-lg rounded-xl overflow-hidden border border-zinc-700 hover:border-purple-400 transition-all duration-300"
+              // --- NEW: Conditional transition logic ---
+              transition={{
+                duration: isInView ? 0.4 : 0.6, // Slower for initial, faster for hover
+                delay: isInView ? 0 : idx * 0.2, // NO delay for hover, only for initial load
+                ease: "easeInOut",
+              }}
+              className="group bg-zinc-800/60 backdrop-blur-lg rounded-xl overflow-hidden border border-zinc-700 hover:border-purple-400 transition-colors"
             >
               <div className="relative h-56 overflow-hidden">
                 <Image
@@ -55,7 +79,8 @@ export const Project = () => {
                   alt={project.title}
                   fill
                   style={{ objectFit: "cover" }}
-                  className="hover:scale-105 transition-transform duration-500"
+                  // Kept this as a simple CSS transition as it looks good
+                  className="group-hover:scale-105 transition-transform duration-500"
                   priority={idx < 2}
                 />
               </div>
@@ -76,7 +101,7 @@ export const Project = () => {
                 </div>
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium text-sm group"
+                  className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium text-sm"
                 >
                   View Project
                   <ArrowRightIcon className="w-4 h-4 ml-1.5 transition-transform duration-200 group-hover:translate-x-1" />
