@@ -12,7 +12,7 @@ const experiences = [
     role: "Software Developer",
     company: "Mahima Technology Private Limited",
     location: "Salem, Tamil Nadu, India",
-    period: "Jul '24 — Present",
+    period: "Jul '24 — Aug '25",
     icon: Briefcase,
     featured: true,
     details: [
