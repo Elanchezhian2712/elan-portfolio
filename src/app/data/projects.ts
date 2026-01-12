@@ -1,5 +1,10 @@
 // app/data/projects.ts
 
+export interface GalleryItem {
+  type: "image" | "video";
+  src: string;
+}
+
 export type Project = {
   title: string;
   slug: string;
@@ -10,7 +15,7 @@ export type Project = {
   github?: string;
   overview: string;
   features: string[];
-  gallery: string[];
+  gallery: GalleryItem[]; 
   purpose: string;
   challenges: { challenge: string; solution: string }[];
   architecture: string;
@@ -35,7 +40,10 @@ export const projects: Project[] = [
       "Optimized and Responsive UI built with Next.js and Framer Motion.",
       "Secure Authentication using Google OAuth 2.0 with minimal, privacy-focused permissions."
     ],
-    "gallery": ["/Images/bookmark-gallery-1.png", "/Images/bookmark-gallery-2.png"],
+    gallery: [
+      { type: "image", src: "/Images/bookmark-gallery-1.png" },
+      { type: "image", src: "/Images/bookmark-gallery-2.png" }
+    ],
     "purpose": "I built this project to solve the problem of securely managing sensitive information—from bookmarks to personal documents—without trusting a third-party service. My goal was to create a zero-knowledge tool that uses AI to eliminate tedious data entry and make organization effortless, giving users full control over their data.",
     "challenges": [
       {
@@ -72,7 +80,12 @@ export const projects: Project[] = [
       "Modular Flask backend with REST APIs for automation.",
       "User testing showed a 50% improvement in task completion efficiency for target users."
     ],
-    gallery: ["/Images/va-gallery-1.png", "/Images/va-gallery-2.png"],
+    gallery: [
+      { type: "image", src: "/Images/va-gallery-1.png" },
+      { type: "image", src: "/Images/va-gallery-2.png" },
+      { type: "video", src: "/video/vsi.mp4" }
+    ],
+
     purpose: "Traditional computer interfaces can be a significant barrier for individuals with disabilities. My goal was to build a tool that levels the playing field, using AI to provide a more natural and accessible way for users to interact with their digital environment.",
     challenges: [
         {
@@ -104,7 +117,10 @@ export const projects: Project[] = [
       "Interactive dashboards for visualizing team structures and performance targets.",
       "Built with a responsive UI using Tailwind CSS for a seamless experience on any device."
     ],
-    gallery: ["/Images/ems-gallery-1.png", "/Images/ems-gallery-2.png"],
+     gallery: [
+      { type: "image", src: "/Images/ems-gallery-1.png" },
+      { type: "image", src: "/Images/ems-gallery-2.png" }
+    ],
     purpose: "Many small businesses rely on error-prone spreadsheets for employee management. The purpose of this system was to provide a centralized, scalable, and secure single source of truth for managing all aspects of a company's workforce and performance goals.",
     challenges: [
         {
@@ -137,7 +153,10 @@ export const projects: Project[] = [
       "Full payment and subscription lifecycle integration with Stripe.",
       "Modern, responsive UI built with Shadcn UI and Tailwind CSS."
     ],
-    gallery: ["/Images/duolingo-gallery-1.png", "/Images/duolingo-gallery-2.png"],
+    gallery: [
+      { type: "image", src: "/Images/duolingo-gallery-1.png" },
+      { type: "image", src: "/Images/duolingo-gallery-2.png" }
+    ],
     purpose: "This project's goal was to deconstruct and rebuild a feature-rich, modern web application to demonstrate proficiency in building a complete Software-as-a-Service (SaaS) product, including user authentication, complex database schemas, and payment processing.",
     challenges: [
         {

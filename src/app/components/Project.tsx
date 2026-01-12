@@ -46,29 +46,26 @@ export const Project = () => {
               initial={{ opacity: 0, y: 40 }}
               onHoverStart={() => setHoveredIndex(idx)}
               onHoverEnd={() => setHoveredIndex(null)}
-              // The animate prop now controls everything based on state
               animate={{
                 opacity: isInView
                   ? hoveredIndex === idx
                     ? 1
                     : hoveredIndex !== null
-                    ? 0.5 // Made non-hovered cards more transparent for better focus
+                    ? 0.5 
                     : 1
                   : 0,
                 y: isInView ? 0 : 40,
-                // --- NEW: Inverted scale logic ---
                 scale: isInView
                   ? hoveredIndex === idx
-                    ? 0.97 // Reduce size on hover
+                    ? 0.97 
                     : hoveredIndex !== null
-                    ? 0.90 // Reduce other cards even more
-                    : 1 // Default size
+                    ? 0.90 
+                    : 1 
                   : 1,
               }}
-              // --- NEW: Conditional transition logic ---
               transition={{
-                duration: isInView ? 0.4 : 0.6, // Slower for initial, faster for hover
-                delay: isInView ? 0 : idx * 0.2, // NO delay for hover, only for initial load
+                duration: isInView ? 0.4 : 0.6, 
+                delay: isInView ? 0 : idx * 0.2, 
                 ease: "easeInOut",
               }}
               className="group bg-zinc-800/60 backdrop-blur-lg rounded-xl overflow-hidden border border-zinc-700 hover:border-purple-400 transition-colors"
@@ -79,7 +76,6 @@ export const Project = () => {
                   alt={project.title}
                   fill
                   style={{ objectFit: "cover" }}
-                  // Kept this as a simple CSS transition as it looks good
                   className="group-hover:scale-105 transition-transform duration-500"
                   priority={idx < 2}
                 />

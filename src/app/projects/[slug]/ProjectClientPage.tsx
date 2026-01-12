@@ -50,8 +50,7 @@ const ProjectClientPage = ({ project, otherProjects }: ProjectClientPageProps) =
           </p>
           <div className="flex flex-col sm:flex-row justify-center flex-wrap gap-4 mt-6 sm:mt-8">
             <Link
-              href={project.link}
-              target="_blank"
+              href="/#contact"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-medium rounded-full shadow-lg transition-all w-full sm:w-auto text-center"
             >
@@ -168,18 +167,26 @@ const ProjectClientPage = ({ project, otherProjects }: ProjectClientPageProps) =
               Gallery
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              {project.gallery.map((img, i) => (
+              {project.gallery.map((item, i) => (
                 <div
                   key={i}
-                  className="relative w-full h-48 sm:h-72 rounded-lg overflow-hidden border-2 border-zinc-700 hover:border-purple-500 transition-colors cursor-pointer"
-                  onClick={() => setPreviewImage(img)}
+                  className="relative w-full h-48 sm:h-72 rounded-lg overflow-hidden border-2 border-zinc-700 hover:border-purple-500 transition-colors"
                 >
-                  <Image
-                    src={img}
-                    alt={`Gallery image ${i + 1}`}
-                    fill
-                    style={{ objectFit: "cover" }}
-                  />
+                  {item.type === "image" ? (
+                    <Image
+                      src={item.src}
+                      alt={`Gallery image ${i + 1}`}
+                      fill
+                      className="object-cover cursor-pointer"
+                      onClick={() => setPreviewImage(item.src)}
+                    />
+                  ) : (
+                    <video
+                      src={item.src}
+                      controls
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                  )}
                 </div>
               ))}
             </div>
