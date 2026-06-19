@@ -89,7 +89,3 @@ div[id] {
   scrollbar-width: thin;
   scrollbar-color: #ffffff transparent;
 }
-
-@media (min-width: 768px) {
-  * { cursor: none !important; }
-}

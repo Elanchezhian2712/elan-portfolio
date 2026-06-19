@@ -6,7 +6,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll";
 import WhatsAppButton from "./components/WhatsAppButton";
-import CustomCursor from "./components/CustomCursor";
 import ScrollProgress from "./components/ScrollProgress";
 
 const geistSans = Geist({
@@ -77,7 +76,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white overflow-x-hidden`}
       >
-        <CustomCursor />
         <ScrollProgress />
         <SmoothScroll>
           <StarsCanvas />
