@@ -1,6 +1,5 @@
 "use client";
 
-import type { Transition } from "framer-motion";
 import { motion, useAnimation } from "framer-motion";
 
 interface DownloadProps extends React.SVGAttributes<SVGSVGElement> {
@@ -9,12 +8,6 @@ interface DownloadProps extends React.SVGAttributes<SVGSVGElement> {
   strokeWidth?: number;
   stroke?: string;
 }
-
-const defaultTransition: Transition = {
-  type: "spring",
-  stiffness: 250,
-  damping: 25,
-};
 
 const Download = ({
   width = 18,

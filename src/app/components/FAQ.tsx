@@ -2,7 +2,7 @@
 
 "use client";
 
-import { Star, MapPin, Briefcase, Lightbulb, TrendingUp, ArrowRight } from "lucide-react";
+import { Star, MapPin, Briefcase, Lightbulb, ArrowRight } from "lucide-react";
 import { SectionWrapper } from "./SectionWrapper";
 import { motion, Variants } from "framer-motion";
 import React from "react";

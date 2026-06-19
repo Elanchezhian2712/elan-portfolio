@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, ArrowDown, Layers, Volume2 } from "lucide-react";
 
@@ -61,7 +61,7 @@ export const Hero = () => {
   const heroVisibleRef = useRef(true);
 
   // One-time click anywhere unlocks browser audio policy
-  const unlockAudio = () => {
+  const unlockAudio = useCallback(() => {
     if (audioUnlockedRef.current) return;
     audioUnlockedRef.current = true;
     setAudioUnlocked(true);
@@ -69,13 +69,12 @@ export const Hero = () => {
       videoRef.current.muted = false;
       videoRef.current.play().catch(() => {});
     }
-  };
+  }, []);
 
   useEffect(() => {
     document.addEventListener("click", unlockAudio, { once: true });
     return () => document.removeEventListener("click", unlockAudio);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [unlockAudio]);
 
   // Re-sync muted after React re-renders (JSX `muted` attr overrides DOM property)
   useEffect(() => {

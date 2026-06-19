@@ -31,14 +31,6 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     y.set(0);
   };
 
-  const fadeInAnimationVariants = {
-    initial: { opacity: 0, y: 60 },
-    animate: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: 0.1 * i, duration: 0.55, ease: [0.33, 1, 0.68, 1] },
-    }),
-  };
 
   return (
     <Link
@@ -49,11 +41,10 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
       <motion.div
         className="h-full bg-zinc-900/50 rounded-2xl overflow-hidden shadow-lg border border-white/5 hover:border-purple-400/40 hover:shadow-purple-900/30 transition-colors duration-300"
         style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
-        variants={fadeInAnimationVariants}
-        initial="initial"
-        whileInView="animate"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 * index, duration: 0.55, ease: "easeOut" }}
         viewport={{ once: true }}
-        custom={index}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
