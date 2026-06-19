@@ -116,7 +116,7 @@ export const Hero = () => {
       {/* video background */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-contain object-right-top z-0"
+        className="absolute inset-0 w-full h-full object-cover object-right-top z-0"
         src="/video/webvideo.mp4"
         autoPlay
         muted
