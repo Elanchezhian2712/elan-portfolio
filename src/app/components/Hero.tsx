@@ -116,7 +116,7 @@ export const Hero = () => {
       {/* video background */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover object-right-top z-0"
+        className="absolute inset-0 w-full h-full object-cover object-[72%_10%] lg:object-right-top z-0"
         src="/video/webvideo.mp4"
         autoPlay
         muted
@@ -155,10 +155,6 @@ export const Hero = () => {
       <div
         aria-hidden
         className="absolute inset-0 z-[1]"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(9,9,11,0.80) 0%, rgba(9,9,11,0.38) 32%, rgba(9,9,11,0.08) 58%, transparent 80%)",
-        }}
       />
 
       {/* scan-line texture */}
@@ -175,7 +171,7 @@ export const Hero = () => {
       />
 
       {/* ── content ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 xl:px-20 flex flex-col lg:flex-row items-center justify-between gap-16 min-h-screen py-24 lg:py-28">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 xl:px-20 flex flex-col lg:flex-row items-center justify-between gap-16 min-h-screen pt-60 pb-24 lg:py-28">
 
         {/* ── LEFT: text ── */}
         <div className="flex-1 min-w-0">
